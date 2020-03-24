@@ -12,4 +12,5 @@ Route::post('/applications', CreateApplicationController::class);
 Route::post('/applications/finish', FinishApplicationController::class);
 Route::get('/applications/current', CurrentApplicationController::class);
 Route::get('/applications', ListApplicationsController::class);
+Route::get('/applications/qr_code', CurrentApplicationQrCodeController::class);
 Route::get('/applications/{qr_token}', QrScannedApplicationsController::class);
