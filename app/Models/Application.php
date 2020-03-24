@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property string qr_token
  * @property string device_token
  *
  * @property string first_name
@@ -54,5 +55,10 @@ class Application extends Model
     public function scopeDeviceToken(Builder $builder, string $device_token): Builder
     {
         return $builder->where('device_token', $device_token);
+    }
+
+    public function scopeQrToken(Builder $builder, string $qr_token): Builder
+    {
+        return $builder->where('qr_token', $qr_token);
     }
 }

@@ -7,11 +7,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class QrScannedApplicationsController extends Controller
 {
-    public function __invoke($qr_scanned_value)
+    public function __invoke(string $qr_token)
     {
-        $application_id = str_replace('app16_application_', '', $qr_scanned_value);
-
-        $application = Application::find($application_id);
+        $application = Application::qrToken($qr_token)->first();
 
         return JsonResource::make($application);
     }

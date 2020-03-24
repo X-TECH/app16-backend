@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateApplicationRequest;
 use App\Models\Application;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class CreateApplicationController extends Controller
 {
@@ -12,6 +13,7 @@ class CreateApplicationController extends Controller
     {
         $application = new Application();
 
+        $application->qr_token = $this->generateUniqueQrToken();
         $application->device_token = $request->device_token;
 
         $application->first_name = $request->first_name;
@@ -32,5 +34,19 @@ class CreateApplicationController extends Controller
         $application->save();
 
         return JsonResource::make($application);
+    }
+
+    private function generateUniqueQrToken(): string
+    {
+        do {
+            $qr_token = Str::random(32);
+        } while ($this->applicationWithGivenQrTokenExist($qr_token));
+
+        return $qr_token;
+    }
+
+    private function applicationWithGivenQrTokenExist(string $qr_token): bool
+    {
+        return Application::qrToken($qr_token)->count() > 0;
     }
 }

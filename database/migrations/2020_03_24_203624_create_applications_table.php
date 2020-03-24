@@ -16,6 +16,7 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
 
+            $table->string('qr_token')->unique();
             $table->string('device_token')->index();
 
             $table->string('first_name');
