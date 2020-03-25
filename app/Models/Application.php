@@ -42,6 +42,12 @@ class Application extends Model
         'last_name',
     ];
 
+    protected $dates = [
+        'out_datetime',
+        'planned_return_datetime',
+        'finished_at',
+    ];
+
     public function getIsFinishedAttribute(): bool
     {
         return $this->finished_at !== null;
