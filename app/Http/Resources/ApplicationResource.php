@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ApplicationResource extends JsonResource
@@ -47,7 +46,7 @@ class ApplicationResource extends JsonResource
 
     private function createdAtDatetime(): string
     {
-        return $this->created_at->format('d.m.Y, H:i');
+        return $this->created_at->setTimezone('Asia/Yerevan')->format('d.m.Y, H:i');
     }
 
     private function finishedAtDatetime(): ?string
@@ -58,7 +57,7 @@ class ApplicationResource extends JsonResource
 
         $diff = $this->finished_at->longAbsoluteDiffForHumans($this->planned_return_datetime);
 
-        $datetime = $this->finished_at->format('d.m, H:i');
+        $datetime = $this->finished_at->setTimezone('Asia/Yerevan')->format('d.m.Y, H:i');
 
         if ($this->finished_at->isAfter($this->planned_return_datetime)) {
             return "{$datetime} ({$diff} ուշացումով)";
