@@ -25,12 +25,12 @@ class CreateApplicationsTable extends Migration
 
             $table->string('out_address');
             $table->dateTime('out_datetime');
-            $table->double('out_latitude');
-            $table->double('out_longitude');
+            $table->double('out_latitude')->nullable();
+            $table->double('out_longitude')->nullable();
 
             $table->string('visiting_address_and_name');
-            $table->double('visiting_latitude');
-            $table->double('visiting_longitude');
+            $table->double('visiting_latitude')->nullable();
+            $table->double('visiting_longitude')->nullable();
             $table->string('visiting_reason');
             $table->dateTime('planned_return_datetime');
 
