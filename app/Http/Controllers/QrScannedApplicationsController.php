@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class QrScannedApplicationsController extends Controller
 {
@@ -11,6 +11,6 @@ class QrScannedApplicationsController extends Controller
     {
         $application = Application::qrToken($qr_token)->first();
 
-        return JsonResource::make($application);
+        return ApplicationResource::make($application);
     }
 }

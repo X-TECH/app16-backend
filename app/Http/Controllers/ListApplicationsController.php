@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class ListApplicationsController extends Controller
 {
@@ -16,6 +16,6 @@ class ListApplicationsController extends Controller
             ->take(20)
             ->get();
 
-        return JsonResource::collection($applications);
+        return ApplicationResource::collection($applications);
     }
 }

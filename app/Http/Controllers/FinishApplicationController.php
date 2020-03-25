@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class FinishApplicationController extends Controller
 {
@@ -23,6 +23,6 @@ class FinishApplicationController extends Controller
         $current_application->finished_at = now();
         $current_application->save();
 
-        return JsonResource::make($current_application->fresh());
+        return ApplicationResource::make($current_application->fresh());
     }
 }

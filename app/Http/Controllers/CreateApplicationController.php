@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateApplicationRequest;
+use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
 class CreateApplicationController extends Controller
@@ -33,7 +33,7 @@ class CreateApplicationController extends Controller
 
         $application->save();
 
-        return JsonResource::make($application);
+        return ApplicationResource::make($application);
     }
 
     private function generateUniqueQrToken(): string
