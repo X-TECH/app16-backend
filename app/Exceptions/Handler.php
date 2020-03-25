@@ -69,14 +69,14 @@ class Handler extends ExceptionHandler
                     'message' => 'Դուք ունեք սխալ լրացված դաշտեր',
                     'fields' => $errors,
                 ]
-            ]);
+            ])->setStatusCode(422);
         } elseif ($exception instanceof NotFoundHttpException) {
             return response()->json([
                 'error' => [
                     'code' => 404,
                     'message' => 'Տվյալները չեն գտնվել',
                 ]
-            ]);
+            ])->setStatusCode(404);
         }
 
         return parent::render($request, $exception);
