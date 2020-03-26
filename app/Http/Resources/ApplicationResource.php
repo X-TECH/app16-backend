@@ -5,10 +5,6 @@ namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * @property Carbon planned_return_datetime
- * @property Carbon finished_at
- */
 class ApplicationResource extends JsonResource
 {
     public function toArray($request)
@@ -42,7 +38,9 @@ class ApplicationResource extends JsonResource
     {
         $diff = $this->planned_return_datetime
             ->startOfMinute()
-            ->longAbsoluteDiffForHumans($this->out_datetime);
+            ->longAbsoluteDiffForHumans(
+                $this->out_datetime->startOfMinute()
+            );
 
         $datetime = $this->planned_return_datetime->format('d.m.Y, H:i');
 
@@ -61,9 +59,11 @@ class ApplicationResource extends JsonResource
         }
 
         $diff = $this->finished_at
-            ->setTimezone('Asia/Yerevan')
+            ->addHours(4)
             ->startOfMinute()
-            ->longAbsoluteDiffForHumans($this->planned_return_datetime);
+            ->longAbsoluteDiffForHumans(
+                $this->planned_return_datetime->startOfMinute()
+            );
 
         $datetime = $this->finished_at->setTimezone('Asia/Yerevan')->format('d.m.Y, H:i');
 
