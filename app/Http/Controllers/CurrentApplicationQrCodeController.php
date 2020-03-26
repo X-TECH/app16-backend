@@ -20,7 +20,9 @@ class CurrentApplicationQrCodeController extends Controller
 
         abort_if(is_null($current_application), 404);
 
-        $qr_code = new QrCode($current_application->qr_token);
+        $qr_code = new QrCode(
+            $this->qrCodeContents($current_application)
+        );
 
         return response(
             $qr_code->writeString(),
@@ -29,5 +31,20 @@ class CurrentApplicationQrCodeController extends Controller
                 'Content-Type' => $qr_code->getContentType()
             ]
         );
+    }
+
+    private function qrCodeContents(Application $application): string
+    {
+        $lines = [];
+
+        $lines[] = "{$application->first_name} {$application->middle_name} {$application->last_name}";
+        $lines[] = "---";
+        $lines[] = "Ելք ժամ\t{$application->out_datetime->format('H:i')}";
+        $lines[] = "Ելք հասցե\t{$application->out_address}";
+        $lines[] = "Այց. վայր\t{$application->visiting_address_and_name}";
+        $lines[] = "Նպատակ\t{$application->visiting_reason}";
+        $lines[] = "Վերդարձ\t{$application->planned_return_datetime->format('H:i')}";
+
+        return implode("\n", $lines);
     }
 }
