@@ -22,3 +22,7 @@
 * Մանե Պողոսյան
 * Ռոբերտ Աբազյան
 * Հայկ Ասլանյան
+
+## Պատմություն
+
+* [Talented Developers Helping Government Fight Coronavirus in Armenia](https://medium.com/@m_hamlet/talented-developers-helping-government-fight-coronavirus-in-armenia-1fa6684c492a)
