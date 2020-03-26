@@ -17,7 +17,7 @@
 
 * Արման Աթոյան
 * Համլետ Մուրադյան ([@mhamlet](https://github.com/mhamlet))
-* Դավիթ Կամավոսյան
+* Դավիթ Կամավոսյան ([@davit-kamavosyan](https://github.com/davit-kamavosyan))
 * Գրիգոր Աղաբալյան ([@Aghabalyan](https://github.com/Aghabalyan))
 * Մանե Պողոսյան
 * Ռոբերտ Աբազյան
