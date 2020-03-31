@@ -17,12 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Carbon out_datetime
  * @property string out_address
- * @property double out_latitude
- * @property double out_longitude
  *
  * @property string visiting_address_and_name
- * @property double visiting_latitude
- * @property double visiting_longitude
  * @property string visiting_reason
  * @property Carbon planned_return_datetime
  *
@@ -30,8 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Application extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'applications';
 
     protected $fillable = [
