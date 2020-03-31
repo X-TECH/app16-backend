@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -70,7 +71,10 @@ class Handler extends ExceptionHandler
                     'fields' => $errors,
                 ]
             ])->setStatusCode(422);
-        } elseif ($exception instanceof NotFoundHttpException) {
+        } elseif (
+            $exception instanceof NotFoundHttpException ||
+            $exception instanceof ModelNotFoundException) {
+
             return response()->json([
                 'error' => [
                     'code' => 404,
